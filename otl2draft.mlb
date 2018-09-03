@@ -1,0 +1,37 @@
+(* $Id: otl2draft.mlb 77 2008-02-28 03:01:40Z tbourke $
+ *
+ * Copyright (c) 2008 Timothy Bourke. All rights reserved.
+ * 
+ * This program is free software; you can redistribute it and/or 
+ * modify it under the terms of the "BSD License" which is 
+ * distributed with the software in the file LICENSE.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the BSD
+ * License for more details.
+ *
+ *)
+local
+    $(SML_LIB)/basis/basis.mlb
+    $(SML_LIB)/smlnj-lib/Util/smlnj-lib.mlb
+
+    lazy_seq.sig
+    ann "nonexhaustiveMatch ignore" in
+	lazyseq.sml
+    end
+
+    otl_line.sig
+    otlline.sml
+
+    otl_reader.sig
+    otlreader.sml
+
+    otl_tree.sig
+    otltree.sml
+
+    otllatex.sml
+    main.sml
+in
+    runmain.sml
+end

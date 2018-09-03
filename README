@@ -1,0 +1,46 @@
+Otl2draft v0.7    20080226
+--------------------------
+author: Timothy Bourke <tim@tbrk.org>
+
+Description
+-----------
+A simple set of routines for parsing .otl files, produced using The Vim
+Outliner tool (http://bike-nomad.com/vim/vimoutliner.html), including a
+utility for producing LaTeX output (\section, \subsection, etc. headings).
+
+The routines are written in Standard ML. Users not familiar with this
+language could adapt OtlLatex to produce different output, although the
+errors given by current compilers are not always easy to interpret, they
+really do help one to write programs that do not crash at run-time.
+
+Little consideration has been given to efficiency.
+It would probably be a shorter program in Haskell!
+
+Structure
+---------
+ <otl file> ==> OtlLine ==> OtlReader ==> OtlTree ==> OtlLatex ==> <latex file>
+                                |
+                             (LazySeq)
+
+It is easiest to write conversion functions over OtlTree.t, but some detail
+is lost and the whole tree will be constructed in memory before processing.
+This should not be problematic because the otl files are small relative to
+the amount of memory on machines where they are processed, and the
+mostly-functional approach means that all strings read from the file will be
+present in memory until garbage collected anyway. An alternative is to write
+functions over the Otl scanner or lazy sequences.
+
+Compilation
+-----------
+For Unix: the Makefile has targets for SML/NJ (withsmlnj)
+	  and MLton (withmlton).
+
+For Windows:
+    1. Install sml.net (http://www.cl.cam.ac.uk/research/tsg/SMLNET)
+    2. sml.net sources.net
+
+Problems compiling with sml.net
+ 1. Substring.full (current Standard Basis) is called Substring.all
+    (previous Standard Basis)
+ 2. TextIO.StreamIO is not provided.
+
